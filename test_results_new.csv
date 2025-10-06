@@ -1,0 +1,6 @@
+conversation_id,session_id,turn_id,query,is_followup,full_response,response_time_ms,judge_result,correctness,explanation_quality,relevance,hallucination_check,tone_clarity,total_score,judgment_reason
+1,,1,What is the success rate for Razorpay today?,False,,1.352071762084961,ERROR,,,,,,,
+1,,2,How does that compare to yesterday?,True,,0.9169578552246094,ERROR,,,,,,,
+2,,1,Which bank under netbanking has the lowest success rate?,False,,0.4992485046386719,ERROR,,,,,,,
+2,,2,What about the highest?,True,,0.5829334259033203,ERROR,,,,,,,
+3,,1,Show me the top 5 payment gateways by transaction volume,False,,0.8718967437744141,ERROR,,,,,,,
