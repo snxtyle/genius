@@ -1,0 +1,70 @@
+GENIUS AGENT TOOLS LIST
+========================
+
+Core Analytics Tools:
+1. sr_analysis_tool
+2. math_tool
+3. rag_tool
+4. search_memory
+
+Q-API Tools:
+5. multi_domain_q_api
+6. multi_domain_info
+7. multi_domain_field_value_discovery
+8. find_orders_field_value_discovery_tool
+
+Lookup Tools (JUSPAY Context Only):
+9. mid_lookup_tool
+10. kam_lookup_tool
+
+Data Analysis Tools:
+11. q_api_csv
+12. sr_recommendations_tool
+13. display_message_tool
+
+Workflow Analysis Tools (Mimir):
+14. analyze_broken_workflow
+15. analyze_refund_workflow
+16. get_stream_response
+
+Sub-Agents:
+17. mimir_subagent
+18. pulse_subagent
+19. sr_analysis_subagent
+
+Pulse Business Intelligence Tools:
+20. analyze_bd_team_details
+21. analyze_merchant_metrics
+22. analyze_industry_merchant_mapping
+23. analyze_organization_product_usage
+24. analyze_merchant_payment_split
+25. analyze_organization_merchant_mapping
+26. analyze_cross_selling_opportunities
+27. analyze_merchant_revenue_trends
+28. analyze_all_merchants_revenue
+29. analyze_specific_merchant_revenue
+
+External MCP Tools (Juspay Dashboard):
+30. juspay_list_configured_gateway
+31. juspay_get_gateway_scheme
+32. juspay_get_gateway_details
+33. juspay_list_gateway_scheme
+34. juspay_get_merchant_gateways_pm_details
+35. juspay_get_offer_details
+36. juspay_list_offers
+37. juspay_get_user
+38. juspay_list_users_v2
+39. juspay_get_conflict_settings
+40. juspay_get_general_settings
+41. juspay_get_mandate_settings
+42. juspay_get_priority_logic_settings
+43. juspay_get_routing_settings
+44. juspay_get_webhook_settings
+45. juspay_get_order_details
+46. juspay_list_payment_links_v1
+47. create_payment_link_juspay
+48. create_autopay_link_juspay
+49. juspay_list_surcharge_rules
+50. list_outages_juspay
+
+TOTAL: 50 tools
