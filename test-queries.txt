@@ -1,0 +1,6 @@
+What is the SR for Razorpay today?
+Break it down by payment method.
+What is the success rate for Razorpay today?
+How does that compare to yesterday?
+Which bank under netbanking has the lowest success rate?
+What about the highest?

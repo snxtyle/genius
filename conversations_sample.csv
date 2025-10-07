@@ -1,0 +1,87 @@
+conversation_id,turn_id,query,is_followup,depends_on
+1,1,"What is the SR for Razorpay today?",false,
+1,2,"Break it down by payment method",true,1
+2,1,"Show me top 5 failed transactions today",false,
+2,2,"Which payment gateway had the most failures?",true,1
+3,1,"What's the GMV for UPI today?",false,
+3,2,"How does it compare to cards?",true,1
+3,3,"Now show me the success rate instead",true,2
+4,1,"SR and volume for visa cards today",false,
+5,1,"Highest number of transaction in a day in last 1 month",false,
+6,1,"What is the average ticket size for UPI Collect transactions over the past month?",false,
+7,1,"how many percentage of UPI txns are flowing through razorpay?",false,
+8,1,"which bank under netbanking has the lowest success rate",false,
+9,1,"Give me the payment method wise SR for today",false,
+10,1,"upi SR for last 5 days",false,
+11,1,"What is the SR for Razorpay today",false,
+12,1,"Give me insights on platform wise",false,
+13,1,"Show me sr for phonepe today ",false,
+13,2,"Compare with yesterday",true,1
+14,1,"give me sr for razorpay and phonpe today and compare wuth yesterday",false,
+15,1,"GMV processed via 6-month no-cost EMI",false,
+16,1,"What is the average ticket size for GMV processed via stored cards?",false,
+17,1,"List all outages yesterday",false,
+18,1,"For cards can you tell me how many were EMI and how many were no-emi",false,
+19,1,"Tell me average perday upi and card transaction for last 3 months",false,
+20,1,"give me the transactions for upi through razorpay for last 10 days and payu",false,
+21,1,"give me success rate of razorpay upi txn and payu upi tnxns",false,
+22,1,"Give me transaction failure rate on a daily level for this month",false,
+23,1,"can i get how much revenue (amount processed) we got through top 3 credit card for the month of july & august 2025.",false,
+24,1,"Successfully processed GMV via stored cards",false,
+25,1,"sr for razorpay where os is null",false,
+26,1,"day-wise(in last week) Traffic for UPI mode on razorpay gateway",false,
+27,1,"total successful total deposits and total amount from 7AM to 9AM in comparision yesterday and today",false,
+28,1,"which particular payment method is impacting",false,
+29,1,"Can you tell me the transaction success rate between June 2025 and July 2025 ? Compare them in tabular formate",false,
+30,1,"What is GMV of the successful transaction for 4th august and 5th august",false,
+31,1,"Payment gateway wise sr for today",false,
+32,1,"Tell me average perday upi and card transaction for last 3 months.",false,
+33,1,"show me sr for pg-wise",false,
+34,1,"count of transaction for last 12 hours group by time for every 1 hour",false,
+35,1,"Compare the transaction success rate of month June and July",false,
+36,1,"can you give me the transaction details where same cards or UPI have been used again multiple accounts in last week in bank",false,
+37,1,"why is the phonepe wallet success rate showing 0% although there is a successfull transaction seen",false,
+38,1,"Can you compare SR between PAYTM and PHONEPE gateway?",false,
+39,1,"how is the success rate in this week, What percentage of number of transactions are done through Mastercard?",false,
+40,1,"what is the total payments processed successfully for the month of august, how does it compare to same time period in july 2025?",false,
+41,1,"Top error today",false,
+42,1,"was there any spike in failure rates in this week?",false,
+43,1,"Any downtime today ?",false,
+44,1,"which is my most used payment method over the past one month?",false,
+45,1,"can you tell me which banks were facing downtimes from 12:00 am to 7:00 on 25th August specifically for payments",false,
+46,1,"Provide me SR , volume , latency pgwise of today",false,
+47,1,"how much order failed through razorpay gateway",false,
+48,1,"how much is the revenue increase from last month to this month",false,
+49,1,"how is volume growing day wise",false,
+50,1,"List all orders today in which upi payment was success",false,
+51,1,"give me sodexo success rate",false,
+52,1,"Compare UPI Success Rates of different PGs over the last 30 days",false,
+53,1,"what status comes from juspay orders status api of hypercheckout",false,
+54,1,"what is the SR of top 3 PGs for last 7 days",false,
+55,1,"How many transactions went through credit card in the last 2 days?",false,
+56,1,"What is the average latency for VISA card transactions today?",false,
+57,1,"Which are the top 5 banks in EMI transactions last month?",false,
+58,1,"Token repeat transactions SR in last week for HDFC PG",false,
+59,1,"Day-wise trend of UPI volume for last month where ticket size is less than 100 INR",false,
+60,1,"List all routing settings",false,
+61,1,"List all webhook settings",false,
+62,1,"Was Sr down today",false,
+63,1,"Was Sr down yesterday",false,
+64,1,"List all orders today",false,
+65,1,"List the orders yesterday in which mandate payment failed",false,
+66,1,"List all conflict settings",false,
+67,1,"How to improve Sr",false,
+68,1,"who is the ceo of Razorpay?",false
+69,1,"List all mandate settings",false,
+70,1,"what went wrong with transaction id meesho-NCZUGJEU55IS4PLE5YAQ-1?",false,
+71,1,"who is the prime minister of India?",false
+72,1,"what happend to refund for meesho-NCZUGJS74CDRWE6QWEZA-1?",false
+73,1,"List all offers last month",false,
+74,1,"give me sample orders corresponding to todays error related to Transaction timed out due to customer inactivity or no bank response",false
+76,1,"What was my most recent order?",false
+77,1,"list 5 failed orders",false
+78,1,"Give sample orders with payment gateway as GPAY_IMF ",false
+79,1,"Give orders with with udf2 as headlessAndroid and upi payment method",false
+79,1,"Give sample orders with payment gateway as PAYTM_V2 and udf2 as headlessAndroid",false
+
+

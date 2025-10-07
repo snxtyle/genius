@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Follow-up Question Evaluation Script
+Genius Agent Evaluation Script
 
 This script evaluates multi-turn conversations with follow-up questions.
 It maintains session context across queries to test the system's ability
 to handle conversational analytics queries.
 
 Usage:
-    python followup_evaluation.py --conversations conversations_sample.csv --output opus-4.1.csv --summary opus-4.1_summary.json
+    python genius/Agent.py --conversations genius/conversations_sample.csv --output results/opus-4.1.json --summary results/opus-4.1_summary.json
 """
 
 import asyncio
@@ -48,10 +48,9 @@ VERTEX_PROJECT = "dev-ai-gamma"
 VERTEX_LOCATION = "us-east5"
 CLAUDE_MODEL = "claude-sonnet-4@20250514"
 
-# Langfuse credentials - set directly or via environment variables
-LANGFUSE_SK = os.getenv('LANGFUSE_SK', 'sk-lf-65c9f49b-8a1a-48a3-9752-2605b7f6cf25')
-LANGFUSE_PK = os.getenv('LANGFUSE_PK', 'pk-lf-292b26f3-6231-42f7-9ef9-816c90af9288')
-LANGFUSE_HOST = os.getenv('LANGFUSE_HOST', 'https://periscope.breeze.in/')
+LANGFUSE_SK = os.getenv('sk-lf-65c9f49b-8a1a-48a3-9752-2605b7f6cf25')
+LANGFUSE_PK = os.getenv('pk-lf-292b26f3-6231-42f7-9ef9-816c90af9288')
+LANGFUSE_HOST = os.getenv('https://periscope.breeze.in')
 
 @dataclass
 class ConversationTurn:
@@ -134,7 +133,7 @@ class AnalyticsAPIClient:
         query: str, 
         session_id: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Send query to analytics endpoint with optional session (with mock fallback)"""
+        """Send query to analytics endpoint with optional session"""
         url = f"{self.base_url}/api/v3/analytics/"
         
         payload = {
@@ -174,100 +173,12 @@ class AnalyticsAPIClient:
         except Exception as e:
             end_time = time.time()
             response_time_ms = (end_time - start_time) * 1000
-            logger.warning(f"API connection failed, using mock response: {str(e)}")
-            
-            # Generate mock response for testing
-            return self._generate_mock_response(query, session_id, response_time_ms)
-    
-    def _generate_mock_response(self, query: str, session_id: Optional[str], response_time_ms: float) -> Dict[str, Any]:
-        """Generate mock API response for testing"""
-        import uuid
-        
-        # Generate or reuse session_id
-        if not session_id:
-            session_id = str(uuid.uuid4())
-        
-        # Create mock responses based on query content
-        if "razorpay" in query.lower() and "success rate" in query.lower():
-            message = "The success rate for **Razorpay** today is **91.8%** with **1,234,567** transactions processed."
-            responses = [
-                {
-                    "input": json.dumps({"domain": "kvorders"}),
-                    "output": json.dumps({"dimensions": ["payment_gateway"], "metrics": ["success_rate"]}),
-                    "payload_type": "info"
-                },
-                {
-                    "input": json.dumps({"domain": "kvorders", "metric": ["success_rate"]}),
-                    "output": json.dumps([{"success_rate": 91.8, "payment_gateway": "Razorpay", "transaction_count": 1234567}]),
-                    "payload_type": "q_api"
-                }
-            ]
-        elif "yesterday" in query.lower():
-            message = "Yesterday's success rate for Razorpay was **92.5%**, which is **0.7 percentage points higher** than today's rate of 91.8%."
-            responses = [
-                {
-                    "input": json.dumps({"domain": "kvorders", "metric": ["success_rate"]}),
-                    "output": json.dumps([{"success_rate": 92.5, "payment_gateway": "Razorpay"}]),
-                    "payload_type": "q_api"
-                }
-            ]
-        elif "lowest success rate" in query.lower() and "netbanking" in query.lower():
-            message = "**Oriental Bank Of Commerce** has the lowest success rate for Netbanking transactions today with a success rate of **78.2%**."
-            responses = [
-                {
-                    "input": json.dumps({"domain": "kvorders"}),
-                    "output": json.dumps({"dimensions": ["bank", "payment_method_type"]}),
-                    "payload_type": "info"
-                },
-                {
-                    "input": json.dumps({"domain": "kvorders", "dimension": "payment_method_type"}),
-                    "output": json.dumps({"results": [{"dimension": "payment_method_type", "results": [["NB"]]}]}),
-                    "payload_type": "field_value_discovery"
-                },
-                {
-                    "input": json.dumps({"domain": "kvorders", "metric": ["success_rate"], "dimensions": ["bank"]}),
-                    "output": json.dumps([{"success_rate": 78.2, "bank": "Oriental Bank Of Commerce"}]),
-                    "payload_type": "q_api"
-                }
-            ]
-        elif "highest" in query.lower():
-            message = "**HDFC Bank** has the highest success rate for Netbanking transactions today with a success rate of **96.5%**."
-            responses = [
-                {
-                    "input": json.dumps({"domain": "kvorders", "metric": ["success_rate"], "dimensions": ["bank"]}),
-                    "output": json.dumps([{"success_rate": 96.5, "bank": "HDFC Bank"}]),
-                    "payload_type": "q_api"
-                }
-            ]
-        elif "top 5" in query.lower() and "payment gateway" in query.lower():
-            message = "The top 5 payment gateways by transaction volume today are: **Razorpay** (1.2M), **PayU** (980K), **Cashfree** (750K), **Paytm** (620K), and **PhonePe** (580K)."
-            responses = [
-                {
-                    "input": json.dumps({"domain": "kvorders", "metric": ["transaction_count"], "dimensions": ["payment_gateway"]}),
-                    "output": json.dumps([
-                        {"payment_gateway": "Razorpay", "transaction_count": 1200000},
-                        {"payment_gateway": "PayU", "transaction_count": 980000},
-                        {"payment_gateway": "Cashfree", "transaction_count": 750000},
-                        {"payment_gateway": "Paytm", "transaction_count": 620000},
-                        {"payment_gateway": "PhonePe", "transaction_count": 580000}
-                    ]),
-                    "payload_type": "q_api"
-                }
-            ]
-        else:
-            message = f"Mock response for query: {query}"
-            responses = []
-        
-        return {
-            "success": True,
-            "data": {
-                "message": message,
-                "session_id": session_id,
-                "responses": responses
-            },
-            "response_time_ms": response_time_ms,
-            "session_id": session_id
-        }
+            logger.error(f"Exception during analytics query: {str(e)}")
+            return {
+                "success": False,
+                "error": f"Exception: {str(e)}",
+                "response_time_ms": response_time_ms
+            }
 
 class FollowupClaudeJudge:
     """Enhanced LLM Judge for follow-up questions using Claude"""
@@ -309,7 +220,7 @@ class FollowupClaudeJudge:
                 logger.info("Attempting to fetch judge prompt from Langfuse...")
                 
                 try:
-                    prompt_response = self.langfuse_client.get_prompt("llm_as_judge", label="nishant_test")
+                    prompt_response = self.langfuse_client.get_prompt("llm_as_judge")
                     
                     if prompt_response and hasattr(prompt_response, 'prompt'):
                         template = prompt_response.prompt
@@ -844,7 +755,7 @@ async def main():
     parser.add_argument("--conversations", required=True, help="Path to CSV file containing conversations")
     parser.add_argument("--output", required=True, help="Path to output CSV file for results")
     parser.add_argument("--base_url", default="http://localhost:8000", help="Base URL for analytics API")
-    parser.add_argument("--auth_token", default="f220a66fd5a4749879e03847134663", help="Authentication token")
+    parser.add_argument("--auth_token", default="a8c2c34d54849aaa63fa5bd0bdf556", help="Authentication token")
     parser.add_argument("--batch_size", type=int, default=5, help="Number of conversations per batch")
     parser.add_argument("--batch_delay", type=float, default=2.0, help="Delay between batches")
     parser.add_argument("--summary", help="Path to save summary report JSON")

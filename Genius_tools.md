@@ -4,7 +4,7 @@ This document provides an exhaustive list of all tools available in the Genius a
 
 ## Core Analytics Tools
 
-### 1. sr_analysis_tool
+### 1. sr_analysis
 **Description:** Analyze service request drops for a merchant over a specified time period.
 
 **All possible input params for tool:**
@@ -17,7 +17,7 @@ This document provides an exhaustive list of all tools available in the Genius a
 - `key`: FilterFieldLiteral - One of: "payment_gateway", "ticket_size", "actual_payment_status", "auth_type", "card_brand", "payment_method_type", "payment_method_subtype", "payment_instrument_group", "is_tokenized", "txn_flow_type", "txn_type", "txn_object_type", "txn_latency_enum", "payment_flow", "emi_type", "order_type", "is_upicc", "is_emi", "bank", "error_message", "gateway_reference_id"
 - `val`: `Union[str, int, float, bool, List[Union[str, int, float, bool]]]` - Filter value(s)
 
-### 2. math_tool
+### 2. math
 **Description:** Perform mathematical calculations and evaluate arithmetic expressions safely.
 
 **All possible input params for tool:**
@@ -102,26 +102,16 @@ This document provides an exhaustive list of all tools available in the Genius a
 - `queries`: `List[str]` - List of fuzzy search queries (required)
 - `max_results`: `Optional[int]` - Maximum results per query (optional)
 
-### 8. find_orders_field_value_discovery_tool
-**Description:** Specialized field value discovery for orders domain.
-
-**All possible input params for tool:**
-- `requests`: `List[DimensionLookupRequestFindOrders]` - Lookup requests for orders (required)
-
-**DimensionLookupRequestFindOrders:**
-- `dimension`: `str` - The dimension to look up values for (required)
-- `queries`: `List[str]` - List of fuzzy search queries (required)
-- `max_results`: `Optional[int]` - Maximum results per query (optional)
 
 ## Lookup Tools (JUSPAY Context Only)
 
-### 9. mid_lookup_tool
+### 9. mid_lookup
 **Description:** Tool to find a definitive Merchant ID (MID) or suggest options based on fuzzy search.
 
 **All possible input params for tool:**
 - `merchant_name_query`: `str` - Merchant name or identifier to search for in the MID database (required)
 
-### 10. kam_lookup_tool
+### 10. kam_lookup
 **Description:** Look up the Key Account Manager (KAM) username for a given Merchant ID.
 
 **All possible input params for tool:**
@@ -136,14 +126,14 @@ This document provides an exhaustive list of all tools available in the Genius a
 - `query_payload`: `QApiPayload` - Q-API query configuration (required)
 - `filename`: `Optional[str]` - Output filename (optional)
 
-### 12. sr_recommendations_tool
+### 12. sr_recommendations
 **Description:** Generate service request improvement recommendations.
 
 **All possible input params for tool:**
 - `merchant_id`: `str` - Merchant ID to analyze (required)
 - `time_period`: `Optional[str]` - Analysis time period (optional)
 
-### 13. display_message_tool
+### 13. display_message
 **Description:** Display formatted messages to users.
 
 **All possible input params for tool:**

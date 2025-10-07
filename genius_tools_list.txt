@@ -2,25 +2,24 @@ GENIUS AGENT TOOLS LIST
 ========================
 
 Core Analytics Tools:
-1. sr_analysis_tool
-2. math_tool
+1. sr_analysis
+2. math
 3. rag_tool
 4. search_memory
 
 Q-API Tools:
-5. multi_domain_q_api
-6. multi_domain_info
-7. multi_domain_field_value_discovery
-8. find_orders_field_value_discovery_tool
+5. q_api
+6. info
+7. field_value_discovery
 
 Lookup Tools (JUSPAY Context Only):
-9. mid_lookup_tool
-10. kam_lookup_tool
+9. mid_lookup
+10. kam_lookup
 
 Data Analysis Tools:
 11. q_api_csv
-12. sr_recommendations_tool
-13. display_message_tool
+12. sr_recommendations
+13. display_message
 
 Workflow Analysis Tools (Mimir):
 14. analyze_broken_workflow
